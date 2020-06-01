@@ -5,8 +5,8 @@ from scipy import ndimage
 import functools
 
 # black-white.py
-img_grey = cv2.imread('test2.jpg', cv2.IMREAD_GRAYSCALE)
-thresh = 150
+img_grey = cv2.imread('before.jpg', cv2.IMREAD_GRAYSCALE)
+thresh = 125
 img_binary = cv2.threshold(img_grey, thresh, 255, cv2.THRESH_BINARY)[1]
 
 # erosion-dilation.py
@@ -55,4 +55,4 @@ right = desired_size - old_size[0]
 color = [255, 255, 255]
 white = cv2.copyMakeBorder(resize, top, bottom, left, right, cv2.BORDER_CONSTANT, value=color)
 
-cv2.imwrite('test2_all.jpg',white)
+cv2.imwrite('after.jpg',white)
