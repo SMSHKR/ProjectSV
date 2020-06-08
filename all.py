@@ -4,14 +4,14 @@ import math
 from scipy import ndimage
 import functools
 
-# black-white.py
-img_grey = cv2.imread('before.jpg', cv2.IMREAD_GRAYSCALE)
-thresh = 125
-img_binary = cv2.threshold(img_grey, thresh, 255, cv2.THRESH_BINARY)[1]
+# adaptive_threshold.py
+img = cv2.imread('test2.jpg',0)
+img = cv2.medianBlur(img,5)
+img = cv2.adaptiveThreshold(img,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY,11,2)
 
 # erosion-dilation.py
 kernel = np.ones((3,3),np.uint8)
-dilation = cv2.dilate(img_binary,kernel,iterations = 1)
+dilation = cv2.dilate(img,kernel,iterations = 1)
 erosion = cv2.erode(dilation,kernel,iterations = 1)
 
 # main_axis2.py
@@ -47,7 +47,7 @@ dim = (width, height)
 resize = cv2.resize(crop, dim, interpolation = cv2.INTER_AREA)
 
 # add_white.py
-desired_size = 500
+desired_size = 300
 old_size = resize.shape[:2]
 old_size_int = functools.reduce(lambda sub, ele: sub * 10 + ele, old_size)
 top = bottom = left = 0
@@ -55,4 +55,4 @@ right = desired_size - old_size[0]
 color = [255, 255, 255]
 white = cv2.copyMakeBorder(resize, top, bottom, left, right, cv2.BORDER_CONSTANT, value=color)
 
-cv2.imwrite('after.jpg',white)
+cv2.imwrite('test2_all.jpg',white)
