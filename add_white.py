@@ -4,7 +4,7 @@ import functools
 
 desired_size = 1000
 
-im = cv2.imread('test2_all.jpg')
+im = cv2.imread('test5.jpg')
 old_size = im.shape[:2] # old_size is in (height, width) format
 
 # convert tuple to int
@@ -18,12 +18,15 @@ old_size_int = functools.reduce(lambda sub, ele: sub * 10 + ele, old_size)
 # im = cv2.resize(im, (new_size[1], new_size[0]))
  
 top = bottom = left = 0
-right = desired_size - old_size[0]
+right = desired_size - old_size[1]
 
 color = [255, 255, 255]
 new_im = cv2.copyMakeBorder(im, top, bottom, left, right, cv2.BORDER_CONSTANT, value=color)
 
-cv2.imwrite('test2_aw.jpg',new_im)
+# print(old_size)
+# print(right)
+
+cv2.imwrite('t_aw.jpg',new_im)
 
 # cv2.imshow("image", new_im)
 # cv2.waitKey(0)
