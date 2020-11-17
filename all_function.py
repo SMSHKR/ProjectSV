@@ -15,8 +15,6 @@ def all(input, output):
     kernel = np.ones((3,3),np.uint8)
     img = cv2.dilate(img,kernel,iterations = 1)
     img = cv2.erode(img,kernel,iterations = 1)
-    img = cv2.erode(img,kernel,iterations = 1)
-    img = cv2.dilate(img,kernel,iterations = 1)
 
     # main_axis2.py
     h, w = img.shape
