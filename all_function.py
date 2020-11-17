@@ -13,9 +13,10 @@ def all(input, output):
 
     # erosion-dilation.py
     kernel = np.ones((3,3),np.uint8)
-    dilation = cv2.dilate(img,kernel,iterations = 1)
-    erosion = cv2.erode(dilation,kernel,iterations = 1)
-    img = erosion
+    img = cv2.dilate(img,kernel,iterations = 1)
+    img = cv2.erode(img,kernel,iterations = 1)
+    img = cv2.erode(img,kernel,iterations = 1)
+    img = cv2.dilate(img,kernel,iterations = 1)
 
     # main_axis2.py
     h, w = img.shape
@@ -26,9 +27,6 @@ def all(input, output):
     center = tuple(m[0])
     endpoint1 = tuple(m[0] + e[0]*100)
     endpoint2 = tuple(m[0] + e[1]*50)
-    cv2.circle(img, center, 5, 128)
-    cv2.line(img, center, endpoint1, 128)
-    cv2.line(img, center, endpoint2, 128)
     delta0 = endpoint1[0]-center[0]
     delta1 = endpoint1[1]-center[1]
     angle = math.atan2(delta0, delta1)
@@ -66,6 +64,6 @@ def all(input, output):
     cv2.imwrite(output,img)
 
 for index in range(1, 11):
-    infile = '%s%s.jpg' % ('Putter\\', str(index))
-    outfile = '%sall%s.jpg' % ('Putter\\', str(index))
+    infile = '%s%s.jpg' % ('Uracha\\', str(index))
+    outfile = '%sall%s.jpg' % ('Uracha\\', str(index))
     all(infile, outfile)
