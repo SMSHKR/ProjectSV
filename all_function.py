@@ -16,6 +16,8 @@ def all(input, output):
     img = cv2.dilate(img,kernel,iterations = 1)
     img = cv2.erode(img,kernel,iterations = 1)
 
+    img = cv2.medianBlur(img,5)
+
     # main_axis2.py
     h, w = img.shape
     mat = np.argwhere(img != 255)
@@ -62,6 +64,6 @@ def all(input, output):
     cv2.imwrite(output,img)
 
 for index in range(1, 11):
-    infile = '%s%s.jpg' % ('Uracha\\', str(index))
-    outfile = '%sall%s.jpg' % ('Uracha\\', str(index))
+    infile = '%s%s.jpg' % ('Wachiragorn\\', str(index))
+    outfile = '%sall%s.jpg' % ('Wachiragorn\\', str(index))
     all(infile, outfile)
